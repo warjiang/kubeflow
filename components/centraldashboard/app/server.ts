@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv'
 import {KubeConfig} from '@kubernetes/client-node';
 import express, {Request, Response} from 'express';
 import {resolve} from 'path';
@@ -11,6 +12,10 @@ import {enableMetricsCollection} from './metrics';
 import {getMetricsService} from './metrics_service_factory';
 import {PrometheusMetricsService} from "./prometheus_metrics_service";
 import {PrometheusDriver} from "prometheus-query";
+
+
+dotenv.config()
+console.log(process.env.KUBECONFIG)
 
 const isProduction = process.env.NODE_ENV === 'production';
 const codeEnvironment = isProduction?'production':'development';
